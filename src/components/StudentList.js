@@ -1,24 +1,28 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import {
+//   deleteStudentAction,
+//   getStudentDetailAction,
+// } from "../redux/actions/studentActions";
 import {
-  deleteStudentAction,
-  getStudentDetailAction,
-} from "../redux/actions/studentActions";
+  deleteStudent,
+  getStudentDetail,
+} from "../redux/reducers/studentSlice";
 
 const StudentList = () => {
-  const studentList = useSelector((state) => state.studentReducer.studentList);
-  const searchList = useSelector((state) => state.studentReducer.searchList);
+  const studentList = useSelector((state) => state.studentSlice.studentList);
+  const searchList = useSelector((state) => state.studentSlice.searchList);
 
   const list = searchList || studentList;
 
   const dispatch = useDispatch();
 
-  const getStudentDetail = (studentId) => {
-    dispatch(getStudentDetailAction(studentId));
+  const handleGetStudentDetail = (studentId) => {
+    dispatch(getStudentDetail(studentId));
   };
 
   const handleDeleteStudent = (studentId) => {
-    dispatch(deleteStudentAction(studentId));
+    dispatch(deleteStudent(studentId));
   };
 
   return (
@@ -44,7 +48,7 @@ const StudentList = () => {
                 <button
                   className="btn btn-info me-3"
                   onClick={() => {
-                    getStudentDetail(student.id);
+                    handleGetStudentDetail(student.id);
                   }}
                 >
                   Chỉnh sửa

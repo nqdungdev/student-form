@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createStudentAction,
-  updateStudentAction,
-} from "../redux/actions/studentActions";
+// import {
+//   createStudentAction,
+//   updateStudentAction,
+// } from "../redux/actions/studentActions";
+import { createStudent, updateStudent } from "../redux/reducers/studentSlice";
 const StudentForm = () => {
   const [values, setValues] = useState({
     id: "",
@@ -20,7 +21,7 @@ const StudentForm = () => {
   });
 
   const selectedStudent = useSelector(
-    (state) => state.studentReducer.selectedStudent
+    (state) => state.studentSlice.selectedStudent
   );
 
   const studentList = useSelector((state) => state.studentReducer.studentList);
@@ -44,11 +45,11 @@ const StudentForm = () => {
   };
 
   const handleCreateStudent = (student) => {
-    dispatch(createStudentAction(student));
+    dispatch(createStudent(student));
   };
 
   const handleUpdateStudent = (studentId, student) => {
-    dispatch(updateStudentAction(studentId, student));
+    dispatch(updateStudent({ studentId, student }));
   };
 
   const handleSubmit = (createStudent, updateStudent) => {

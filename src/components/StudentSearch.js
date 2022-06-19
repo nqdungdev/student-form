@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { searchStudentAction } from "../redux/actions/studentActions";
+// import { searchStudentAction } from "../redux/actions/studentActions";
+import { searchStudent } from "../redux/reducers/studentSlice";
 
 const StudentSearch = () => {
   const searchRef = useRef("");
@@ -8,7 +9,7 @@ const StudentSearch = () => {
   const dispatch = useDispatch();
 
   const handleSearch = () => {
-    dispatch(searchStudentAction(searchRef.current.value));
+    dispatch(searchStudent(searchRef.current.value));
   };
   return (
     <div className="d-flex my-5">
